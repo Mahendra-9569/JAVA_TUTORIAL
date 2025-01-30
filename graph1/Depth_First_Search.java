@@ -1,7 +1,7 @@
 package graph1;
 import java.util.*;
 
-public class Breadth_First_Search {
+public class Depth_First_Search {
     static class Edge{
         int src;
         int dest;
@@ -13,20 +13,20 @@ public class Breadth_First_Search {
         }
     }
 
-    public static void BFS(ArrayList<Edge>[] graph){
-        Queue<Integer> q = new LinkedList<>();
+    public static void DFS(ArrayList<Edge>[] graph){
+        Stack<Integer> s = new Stack<>();
         boolean visited[] = new boolean[graph.length];
-        q.add(0);
+        s.push(0);
     
-        while(!q.isEmpty()){
-            int curr = q.remove();
+        while(!s.isEmpty()){
+            int curr = s.pop();
             if(!visited[curr]){
                 System.out.println(curr);
                 visited[curr] = true;
                 for(int i = 0 ; i<graph[curr].size(); i++){
                     Edge e = graph[curr].get(i);
                     if(!visited[e.dest]){
-                        q.add(e.dest);
+                        s.push(e.dest);
                     }
                 }
             }
@@ -58,20 +58,12 @@ public class Breadth_First_Search {
         graph[1].add(new Edge(1, 2, 1));
         graph[1].add(new Edge(1, 3, 2));
         graph[2].add(new Edge(2, 3, 1));
-        graph[2].add(new Edge(2, 4, 4));
-        graph[2].add(new Edge(2, 1, 4));
-        graph[3].add(new Edge(3, 1, 4));
-        graph[3].add(new Edge(3, 2, 3));
+        graph[2].add(new Edge(2, 4, 3));
+        graph[3].add(new Edge(3, 4, 4));
         graph[4].add(new Edge(4, 2, 2));
-        
-        // int size = graph[2].size();
-        // for(int i=0; i<size; i++){
-        //     Edge e = graph[2].get(i);
-        //     System.out.println(e.src + " " + e.dest + " " + e.weight);
-        // }
+        graph[4].add(new Edge(4, 3, 4));
 
-
-        BFS(graph);
+        DFS(graph);
     }
     
 }
