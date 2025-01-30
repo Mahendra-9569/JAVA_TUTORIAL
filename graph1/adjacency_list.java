@@ -12,6 +12,22 @@ public class adjacency_list {
         }
     }
     public static void main(String[] args) {
+         // 0----------1
+        //            /\
+        //           /  \
+        //          /    \
+        //         /      \
+        //        /        \
+        //       /          \
+        //      2------------3
+        //       |   
+        //       | 
+        //       | 
+         //      |
+         //      4
+      
+
+
         int v = 5;
         ArrayList<edge> graph[] = new ArrayList[v];
         for(int i=0; i<v; i++){
