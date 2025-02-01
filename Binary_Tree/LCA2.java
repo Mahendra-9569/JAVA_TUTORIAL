@@ -1,7 +1,6 @@
 package Binary_Tree;
-import java.util.ArrayList;
 
-public class Lowest_Common_Ancestor {
+public class LCA2 {
     static class Node{
         int data;
         Node left;
@@ -12,9 +11,6 @@ public class Lowest_Common_Ancestor {
             this.right = null;
         }
     }
-
-
-
 
     public static Node   createBST(Node root, int data){
         if(root == null){
@@ -31,28 +27,25 @@ public class Lowest_Common_Ancestor {
         return root;
     }
 
-    public static void addpath(Node root , ArrayList<Integer> path, int data){
+    
+    public static Node LCA(Node root, int n1, int n2){
         if(root == null){
-            return;
+            return null;
         }
-        path.add(root.data);
-        if(root.data == data){
-            return;
+        if(root.data == n1 || root.data == n2){
+            return root;
         }
-        addpath(root.left, path, data);
-        addpath(root.right, path, data);
-        path.remove(path.size() - 1);
-    }
-
-    public static int findancestor(ArrayList<Integer> path1, ArrayList<Integer> path2){
-        int i = 0;
-   
-        for( i = 0; i<path1.size(); i++){
-            if(path1.get(i) != path2.get(i)){
-                break;
-            }
+        Node left = LCA(root.left, n1, n2);
+        Node right = LCA(root.right, n1, n2);
+        if(left != null && right != null){
+            return root;
         }
-        return path1.get(i - 1);
+        if(left != null){
+            return left;
+        }
+        else{
+            return right;
+        }
     }
     public static void main(String[] args) {
         //                1
@@ -65,28 +58,8 @@ public class Lowest_Common_Ancestor {
         for(int i = 0; i < arr.length; i++){
             root = createBST(root, arr[i]);
         }
-        
-        ArrayList<Integer> path1 = new ArrayList<>();
-        ArrayList<Integer> path2 = new ArrayList<>();
-        addpath(root, path1, 4);
-        addpath(root, path2, 6);
-        int find = findancestor(path1, path2);
-        System.out.println(find);
-
-
-        
+       System.out.println(LCA(root, 4, 6).data);
+       
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
