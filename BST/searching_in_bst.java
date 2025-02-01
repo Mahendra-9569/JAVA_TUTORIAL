@@ -58,6 +58,23 @@ public class searching_in_bst {
     
 
     }
+    public static void printinRange(Node root, int k1, int k2){
+        if(root == null){
+            return;
+        }
+        if(root.data < k1){
+            printinRange(root.right, k1, k2);
+        }
+        if(root.data >= k1 && root.data <= k2){
+
+            System.out.print(root.data + " ");
+            printinRange(root.left, k1, k2);
+            printinRange(root.right, k1, k2);
+        }
+        if(root.data > k2){
+            printinRange(root.left, k1, k2);
+        }
+    }
     public static void main(String[] args) {
         //                1
         //              /   \
@@ -74,6 +91,7 @@ public class searching_in_bst {
         inorder(root);
         System.out.println();
         System.out.println(search(root, 5));
+        printinRange(root , 2, 5);
     }
     
 }
